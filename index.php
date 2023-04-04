@@ -7,7 +7,7 @@ else {
     $path = "img";
 }
 header("Content-type: image/jpeg");
-$url = './' . getRandomfile($filePath);
+$url = './' . getRandomfile($path);
 readfile ($url);
 
 function getfilecounts($filePath)
