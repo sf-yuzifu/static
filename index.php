@@ -1,5 +1,6 @@
 <?php
 header('Access-Control-Allow-Origin:*');
+header('Server-Time:'.date("m.d"));
 if (date("m.d") == "03.05") {
     $path = "img_rice";
 }
@@ -44,3 +45,4 @@ function getRandomfile($filePath)
     closedir($handle);
     return $filePath . "/" . $trueFile;
 }
+?>
