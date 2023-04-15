@@ -3,6 +3,9 @@ header('Access-Control-Allow-Origin:*');
 if (date("m.d") == "03.05") {
     $path = "img_rice";
 }
+else if (date("m.d") == "04.16") {
+    $path = "img_nice";
+} 
 else {
     $path = "img";
 }
@@ -41,4 +44,3 @@ function getRandomfile($filePath)
     closedir($handle);
     return $filePath . "/" . $trueFile;
 }
-?>
