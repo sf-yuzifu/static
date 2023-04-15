@@ -4,7 +4,13 @@
       "runtime": "vercel-php@0.6.0"
     }
   },
+  "regions": [
+    "hkg1"
+  ],
   "routes": [
-    { "src": "/(.*)", "dest": "/api/index.php" }
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.php"
+    }
   ]
 }
