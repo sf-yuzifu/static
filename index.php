@@ -8,7 +8,7 @@ if (date("m.d") == "03.05") {
 else if (date("m.d") == "04.16") {
     $path = "img_nice";
 } 
-else if (date("y") == "2023" && date("m") == "04" && date("d") > 21) {
+else if (date("Y") == "2023" && date("m") == "04" && date("d") > 21) {
     $path = "img_b70";
 } 
 else if (date("m.d") == "05.01") {
