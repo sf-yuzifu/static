@@ -8,18 +8,15 @@ if (date("m.d") == "03.05") {
 else if (date("m.d") == "04.16") {
     $path = "img_nice";
 } 
-else if (date("Y") == "2023" && date("m") == "04" && date("d") > 21) {
-    $path = "img_b70";
-} 
 else if (date("m.d") == "05.01") {
     $path = "img_b70";
 } 
 else {
     $path = "img";
 }
-header("Content-type: image/jpeg");
-$url = './' . getRandomfile($path);
-readfile ($url);
+
+$url = 'https://cdn2.chuqis.com/gh/214545666/static@main/' . getRandomfile($path);
+header("location:" . $url);
 
 function getfilecounts($filePath)
 {
