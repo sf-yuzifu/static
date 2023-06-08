@@ -11,6 +11,9 @@ else if (date("m.d") == "04.16") {
 else if (date("m.d") == "05.01") {
     $path = "img_b70";
 } 
+else if (date("m.d") == "05.02") {
+    $path = "img_sw";
+} 
 else {
     $path = "img";
 }
