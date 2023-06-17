@@ -18,7 +18,7 @@ else {
     $path = "img";
 }
 
-$url = 'https://cdn2.chuqis.com/gh/214545666/static@main/' . getRandomfile($path);
+$url = 'https://ghproxy.com/https://raw.githubusercontent.com/214545666/static/main/' . getRandomfile($path);
 header("location:" . $url);
 
 function getfilecounts($filePath)
