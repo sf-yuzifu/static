@@ -18,7 +18,7 @@ else {
     $path = "img";
 }
 
-$url = 'https://mirror.ghproxy.com/https://raw.githubusercontent.com/214545666/static/main/' . getRandomfile($path);
+$url = 'https://ghps.cc/https://raw.githubusercontent.com/214545666/static/main/' . getRandomfile($path);
 header("location:" . $url);
 
 function getfilecounts($filePath)
