@@ -21,7 +21,7 @@ else {
     $path = "img";
 }
 
-$url = 'https://mirror.ghproxy.com/https://raw.githubusercontent.com/sf-yuzifu/static/main/' . getRandomfile($path);
+$url = 'https://ghfast.top/https://raw.githubusercontent.com/sf-yuzifu/static/main/' . getRandomfile($path);
 header("location:" . $url);
 
 function getfilecounts($filePath)
