@@ -20,11 +20,12 @@ $shouldRedirect = false;
 if (isset($_GET['url'])) {
   $inputUrl = trim($_GET['url']);
   if (isValidUrl($inputUrl)) {
-    $url = htmlspecialchars($inputUrl, ENT_QUOTES, 'UTF-8');
+    // 先处理URL结构，再编码
+    $url = $inputUrl;
     
     // 处理协议相对URL
     if (substr($url, 0, 2) === '//') {
-      $url = 'https:' . $url;
+      $url = 'https://' . substr($url, 2);
     } 
     // 处理无协议URL
     elseif (!preg_match('%^https?://%i', $url) && !preg_match('%^/%', $url)) {
@@ -41,6 +42,9 @@ if (isset($_GET['url'])) {
         $shouldRedirect = true;
       }
     }
+    
+    // 最后对URL进行编码（只编码必要部分）
+    $url = htmlspecialchars($url, ENT_QUOTES, 'UTF-8', false);
   }
 }
 
