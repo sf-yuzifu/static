@@ -13,10 +13,7 @@ else if (date("m.d") == "05.01") {
 } 
 else if (date("m.d") == "05.02") {
     $path = "img_sw";
-} 
-else if (date("m.d") == "08.31") {
-    $path = "img_setu";
-} 
+}
 else {
     $path = "img";
 }
