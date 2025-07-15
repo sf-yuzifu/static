@@ -20,18 +20,20 @@ $shouldRedirect = false;
 if (isset($_GET['url'])) {
   $inputUrl = trim($_GET['url']);
   if (isValidUrl($inputUrl)) {
-    // 先处理URL结构，再编码
-    $url = $inputUrl;
-    
+    // 保留原始URL用于重定向
+    $originalUrl = $inputUrl;
+
     // 处理协议相对URL
-    if (substr($url, 0, 2) === '//') {
-      $url = 'https://' . substr($url, 2);
-    } 
-    // 处理无协议URL
-    elseif (!preg_match('%^https?://%i', $url) && !preg_match('%^/%', $url)) {
-      $url = 'https://' . $url;
+    if (substr($inputUrl, 0, 2) === '//') {
+      $url = 'https://' . substr($inputUrl, 2);
     }
-    
+    // 处理无协议URL
+    elseif (!preg_match('%^https?://%i', $inputUrl) && !preg_match('%^/%', $inputUrl)) {
+      $url = 'https://' . $inputUrl;
+    } else {
+      $url = $inputUrl;
+    }
+
     // 检查是否在白名单中
     $parsedUrl = parse_url($url);
     if (isset($parsedUrl['host'])) {
@@ -40,17 +42,27 @@ if (isset($_GET['url'])) {
       $domain = preg_replace('/^www\./', '', $domain);
       if (in_array($domain, $whitelist)) {
         $shouldRedirect = true;
+        // 使用原始URL进行重定向
+        $redirectUrl = $originalUrl;
       }
     }
-    
-    // 最后对URL进行编码（只编码必要部分）
-    $url = htmlspecialchars($url, ENT_QUOTES, 'UTF-8', false);
+
+    // 安全处理用于iframe显示的URL
+    $safeUrl = htmlspecialchars($url, ENT_QUOTES, 'UTF-8');
   }
 }
 
 // 如果是白名单域名，直接跳转
 if ($shouldRedirect) {
-  header("Location: $url");
+  // 确保重定向URL有正确的协议
+  if (substr($redirectUrl, 0, 2) === '//') {
+    $redirectUrl = 'https:' . $redirectUrl;
+  } elseif (!preg_match('%^https?://%i', $redirectUrl)) {
+    $redirectUrl = 'https://' . $redirectUrl;
+  }
+
+  // 直接跳转
+  header("Location: $redirectUrl");
   exit;
 }
 ?>
